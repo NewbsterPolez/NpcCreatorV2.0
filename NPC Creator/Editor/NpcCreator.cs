@@ -128,7 +128,6 @@ public class NpcCreator : OdinEditorWindow
 
     #region == Npc Selection Variables ==
     private NpcCreatorSelector selection = null;
-    private Material selectionMaterial = null;
     private bool IsSelectionLocked = false;
     #endregion
 
@@ -196,6 +195,7 @@ public class NpcCreator : OdinEditorWindow
     [PropertySpace]
     private void LockSelection()
     {
+        IsSelectionLocked = true;
         ClearCurrentOptionsObjs();
         FindPartRoots();
         DisableAllParts();
@@ -207,7 +207,6 @@ public class NpcCreator : OdinEditorWindow
         BreakFromPrefab();
 
         NpcName = "";
-        IsSelectionLocked = true;
         ChangeGender();
     }
 
@@ -2077,13 +2076,11 @@ public class NpcCreator : OdinEditorWindow
             else
             {
                 selection = null;
-                selectionMaterial = null;
             }
         }
         else if (!Selection.activeGameObject && IsSelectionLocked == false)
         {
             selection = null;
-            selectionMaterial = null;
         }
     }
     #endregion
@@ -2380,7 +2377,33 @@ public class NpcCreator : OdinEditorWindow
         EyebrowsOBJ = null;
         HairOBJ = null;
         FacialHairOBJ = null;
-    }
+        GenderOBJ = null;
+        HelmetOBJ = null;
+        CowlOBJ = null;
+        FaecGuardOBJ = null;
+        HatOBJ = null;
+        ChestOBJ = null;
+        WaistOBJ = null;
+        ShoulderLeftOBJ = null;
+        ShoulderRightOBJ = null;
+        SleeveLeftOBJ = null;
+        SleeveRightOBJ = null;
+        ElbowpadLeftOBJ = null;
+        ElbowpadRightOBJ = null;
+        WristRightOBJ = null;
+        WristLeftOBJ = null;
+        GloveLeftOBJ = null;
+        GloveRightOBJ = null;
+        KneepadLeftOBJ = null;
+        KneepadRightOBJ = null;
+        BootLeftOBJ = null;
+        BootRightOBJ = null;
+        CapeOBJ = null;
+        BeltAccessoryOBJ = null;
+        FrontHeadAccessoryOBJ = null;
+        BackHeadAccessoryOBJ = null;
+        SideHeadAccessoryOBJ = null;
+}
 
     //Method to fetch the Options and populate the appropriate lists with them
     private void FetchOptions()
@@ -3475,7 +3498,7 @@ public class NpcCreator : OdinEditorWindow
 
     //Methods used to save the NPC in various ways
     #region -- Save Methods --
-    private string NpcSavePath = "Assets/Project_Homestead/Assets/Npcs/";
+    private string NpcSavePath = "Assets/Npcs/";
 
     public void SaveInstance()
     {
@@ -3489,6 +3512,9 @@ public class NpcCreator : OdinEditorWindow
             var npcsGo = new GameObject("NPCS");
             selection.transform.SetParent(npcsGo.transform);
         }
+        LoadMaterial = null;
+        IsSelectionLocked = false;
+        selection = null;
     }
 
     public void SaveAsNewPrefab()
@@ -3504,7 +3530,9 @@ public class NpcCreator : OdinEditorWindow
             selection.transform.SetParent(npcsGo.transform);
         }
         SavePrefab(NpcName);
+        LoadMaterial = null;
         IsSelectionLocked = false;
+        selection = null;
     }
 
     public void SaveAsOverwrite()
@@ -3520,7 +3548,9 @@ public class NpcCreator : OdinEditorWindow
             selection.transform.SetParent(npcsGo.transform);
         }
         PrefabUtility.SaveAsPrefabAssetAndConnect(selection.gameObject, NpcSavePath + NpcName + ".prefab", InteractionMode.AutomatedAction);
+        LoadMaterial = null;
         IsSelectionLocked = false;
+        selection = null;
     }
 
     private void SavePrefab(string name)
