@@ -195,7 +195,6 @@ public class NpcCreator : OdinEditorWindow
     [PropertySpace]
     private void LockSelection()
     {
-        IsSelectionLocked = true;
         ClearCurrentOptionsObjs();
         FindPartRoots();
         DisableAllParts();
@@ -208,6 +207,7 @@ public class NpcCreator : OdinEditorWindow
 
         NpcName = "";
         ChangeGender();
+        IsSelectionLocked = true;
     }
 
     #endregion
@@ -421,7 +421,8 @@ public class NpcCreator : OdinEditorWindow
         Goblin,
         Fae,
         Elf,
-        Undead
+        Undead,
+        HalfElf
     }
 
     private int Gender;
