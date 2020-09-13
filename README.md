@@ -15,7 +15,7 @@ Set-Up:
 
 2.) Create a new folder in your project with a name of your choosing, then right-click the newly created folder and select 'Show In Explorer' from the pop-up menu.
 
-3.) Drag-and-drop the Commons folder, Editor folder, and NpcCreatorSelector script into the new folder.
+3.) Drag-and-drop the Commons folder, Editor folder, Odin Custom Attibutes folder and NpcCreatorSelector script into the new folder.
 
 4.) Open the Editor folder in the Unity Project and then open the NpcCreator script. Locate the region ' ==> Editor Extension Methods/Variables <==' and expand it. Within it, find the region ' -- Save Methods -- ', then expand that.
 
